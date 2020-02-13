@@ -20,7 +20,7 @@ class Version:
         priority_list = ["r", "a", "b", "-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         rez = False
         for index in range(0, len(splitted_version_this)):
-            if index < len(splitted_version_other) and splitted_version_this[index] == splitted_version_other[index]:
+            if index >= len(splitted_version_other) or splitted_version_this[index] == splitted_version_other[index]:
                 continue
             if splitted_version_this[index].isdigit() and splitted_version_other[index].isdigit():
                 rez = int(splitted_version_this[index]) < int(splitted_version_other[index])
