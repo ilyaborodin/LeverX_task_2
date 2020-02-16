@@ -17,7 +17,7 @@ class Version:
         splitted_version_other = self._get_list_from_version(other.version)
         splitted_version_this += ["-"]
         splitted_version_other += ["-"]
-        priority_list = ["r", "a", "b", "-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        priority_list = ["a", "b", "r", "-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         rez = False
         for index in range(0, len(splitted_version_this)):
             if index >= len(splitted_version_other) or splitted_version_this[index] == splitted_version_other[index]:
