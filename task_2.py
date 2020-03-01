@@ -6,21 +6,22 @@ import re
 class Version:
     def __init__(self, version):
         self.version = version
+        self.splitted_version_this = self._get_list_from_version(self.version)
 
     def __eq__(self, other):
-        splitted_version_this = self._get_list_from_version(self.version)
+        splitted_version_this = self.splitted_version_this
         splitted_version_other = self._get_list_from_version(other.version)
         return splitted_version_this == splitted_version_other
 
     def __lt__(self, other):
-        splitted_version_this = self._get_list_from_version(self.version)
+        splitted_version_this = self.splitted_version_this
         splitted_version_other = self._get_list_from_version(other.version)
         splitted_version_this += ["-"]
         splitted_version_other += ["-"]
         priority_list = ["a", "b", "r", "-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         rez = False
         for index in range(0, len(splitted_version_this)):
-            if index >= len(splitted_version_other) or splitted_version_this[index] == splitted_version_other[index]:
+            if splitted_version_this[index] == splitted_version_other[index]:
                 continue
             if splitted_version_this[index].isdigit() and splitted_version_other[index].isdigit():
                 rez = int(splitted_version_this[index]) < int(splitted_version_other[index])
@@ -32,7 +33,6 @@ class Version:
 
     def _get_list_from_version(self, str_version: str) -> list:
         return re.findall(r"\d{1,}|(?<![a-zA-Z])[a-zA-Z]", str_version)
-
 
 
 def main():
